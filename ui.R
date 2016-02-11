@@ -8,31 +8,7 @@ shinyUI(
       "Welcome!",
       fluidPage(
         # splitLayout(
-        fluidRow(
-          column(12,
-                 wellPanel(h4("Welcome to the Time Monitoring page"),
-                           hr(),
-                           
-                           h5(p("Purpose of this app:",style = "color:dodgerblue")),
-                           p("The National Birth Defects Prevention Network (NBDPN) identified a need in 2012 to 
-                             conduct analysis of changes in the increases and decreases in birth defects over time on a regular basis.
-                             This tool addresses that need by providing simplified analysis through the SaTScan (spatial scan-statistic) software."),
-                           hr(),
-                           h5(p(style = "color:dodgerblue","Methods used:")),
-                           p("SaTScan "),
-                           tags$ul(
-                             tags$li("Purely temporal"),
-                             tags$li("Retrospective"),
-                             tags$li("High-rates only (Observed > Expected)"),
-                             tags$li("Poisson distribution")),
-                           br(),
-                           br(),
-                           br(),
-                           hr()
-                           #,
-                           # h5(p("Note: This app works best in Internet Explorer"),style="color:red")
-                           ),
-                 
+       
                  fluidRow(
                    column(4,
                           wellPanel(
@@ -82,7 +58,7 @@ shinyUI(
                                 br(),  br(),  br(),  br(),  br(),  br(),
                                 br()
                                 
-                              ) )))))))),
+                              ) )))))),
     
     
     
@@ -199,9 +175,10 @@ shinyUI(
                    )),
                    uiOutput("Choices"),
                    
-               plotlyOutput("plots"),
-               
-               uiOutput("contents23")
+               plotlyOutput("plots")
+               # ,
+               # 
+               # uiOutput("contents23")
                
              )
              ))),
@@ -211,7 +188,31 @@ shinyUI(
     
     tabPanel("About",
              fluidPage(
-               column(4,
+               fluidRow(
+                 column(12,
+                        wellPanel(h4("About Time Monitoring"),
+                                  hr(),
+                                  
+                                  h5(p("Purpose of this app:",style = "color:dodgerblue")),
+                                  p("The National Birth Defects Prevention Network (NBDPN) identified a need to 
+                                    conduct analysis of changes in the increases and decreases in birth defects over time on a regular basis.
+                                    This tool addresses that need by providing simplified analysis through the SaTScan (spatial scan-statistic) software."),
+                                  hr(),
+                                  h5(p(style = "color:dodgerblue","Methods used:")),
+                                  p("SaTScan "),
+                                  tags$ul(
+                                    tags$li("Purely temporal"),
+                                    tags$li("Retrospective"),
+                                    tags$li("High-rates only (Observed > Expected)"),
+                                    tags$li("Poisson distribution")),
+                                  br(),
+                                  br(),
+                                  br(),
+                                  hr()
+                                  #,
+                                  # h5(p("Note: This app works best in Internet Explorer"),style="color:red")
+                                  ))),
+               column(12,
                       wellPanel(align="left",
                                 # "About",
                                 h5("Licenses"),

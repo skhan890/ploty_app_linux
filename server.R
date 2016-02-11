@@ -258,7 +258,7 @@ shinyServer(function(input, output, session) {
     library(rsatscan)
     ##
     
-    system('chmod 755 SaTScan/satscan_stdc++6_x86_64_64bit')
+    #system('chmod 755 SaTScan/satscan_stdc++6_x86_64_64bit')
     
     for (i in 1:length(unique(case$DEFECT_NAME))){
       ### can explore this later? you can have dynamic time frames..
@@ -303,7 +303,9 @@ shinyServer(function(input, output, session) {
       
       #satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="C:/Program Files (x86)/SaTScan")
       
-      thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="SaTScan", ssbatchfilename = "satscan_stdc++6_x86_64_64bit", verbose=T )
+      thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="SaTScan", 
+                            #ssbatchfilename = "satscan_stdc++6_x86_64_64bit", 
+                            verbose=T )
       
       save(thefile, file=filepath)
       
