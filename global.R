@@ -22,6 +22,7 @@ library(qdapRegex)
 library(dplyr)
 library(lubridate)
 library(plotly)
+library(htmlTable)
 
 #system.file("SaTScan/SaTScan.exe", package="rsatscan") 
 

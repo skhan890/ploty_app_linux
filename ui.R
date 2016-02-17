@@ -6,77 +6,92 @@ shinyUI(
     tabPanel(
       "Tutorial",
       fluidPage(
-                 fluidRow(#class="myRow1",
-                   column(8,#div(style = "height:200px"),
-                          wellPanel(
-                            h4(p(style = "color:dodgerblue","Step 1: Prepare data files")),
+        fluidRow(
+          column(8,
+                 wellPanel(
+                   h4(p(style = "color:dodgerblue","Step 1: Prepare data files"),
+                      hr()),
+                   
+                   fluidRow(column(3,
 
-                            hr(),
-                      # strong("Data should be structured as Table 1 (on the left)."),hr(),
-                   #   span("To prepare data, follow the next steps:"),
-                           h6(p(style = "color:dodgerblue","FORMAT")),
-                   hr(),
-                      span("Your aggregated data file can be accepted in any three of the following formats:"),
-                      tags$ul(
-                        tags$li(("SAS (.sas7bdat)")),         
-                        tags$li(("Excel (.xls, .xlsx)")),  
-                        tags$li(("Tab delimited (.txt)"))),  
-             hr() ,
-             h6(p(style = "color:dodgerblue","VARIABLES")),
-             hr(),
-             span("The file should have the following variables:"),
-             tags$ul(
-               tags$li(strong("ID:"),"Suggested — your two-character State (e.g. FL)."), 
-               tags$li(strong("Defect_Name:"), "A string that identifies your defect. There should be no spaces. ","(e.g. 'Trisomy_21' instead of 'Trisomy 21'). There is no limit to how many defects to include in the analysis."), 
-               tags$li(strong("Cases:"), "Case count for that time unit.**"),
-               tags$li(strong("Time:"), "Aggregate all data by year only (YYYY), or by month and year (YYYY/MM)."),
-               tags$li(strong("Population:"), "The number of live births (birth defect cases + all other infants born that year) in your whole registry area for each date combination."
-               )),
-                            br() ,
-                            br() ,
-                            br() ,
-                            br() 
-                            #,
-                           
-                            #,
-
-                          ) ),
-                   column(4,#div(style = "height:200px"),
-                          wellPanel(h5("Table 1: Example data for formatting"),
-                       includeHTML("www/tables.HTML"),hr(),
-                         em( "Your aggregate data should look like the Table 1 (above). The highlighted rows in blue are not required: they are
-                          visual representations of how each defect is included in a single file.")))),
-                   fluidRow(
-                     column(12,
-                            wellPanel(
-                              h4(p(style = "color:dodgerblue","Step 2: Notes on aggregating data:")),
-                              # strong(),
-                              hr(),
-                              hr(),
-                              
-                              hr(),
-                              p(style = "color:dodgerblue","Notes:"),
-                              p("Your Excel file or text file must have a header row with the five variables (ID DEFECT_NAME CASES TIME POPULATION)."),
-                              # p(style = "color:dodgerblue","Note on Cases**:"),
-                              p("** Each defect must be within the same time frame. You cannot look at one defect from 2004-2006 and another from 2003-2006. To do this, create two different files.")
-                              
-                              ,
-                              hr()
-                            )
-                     )),
-                     
-                     fluidRow(
-                       column(4,offset=4,
-                              wellPanel(
-                                h4(p(style = "color:dodgerblue","Step 3")),
-                                hr(),
-                                p( "Once the data is aggregated, go to the File Input page to start the analysis."),
-                                br(),  br(),  br(),  br(),  br(),  br(),
-                                actionButton("filego", "Go to File Input page!"),
-                                br(),  br(),  br(),  br(),  br(),  br(),
-                                br()
-                                
-                              ) )))),
+                                   h6(p(style = "color:dodgerblue","FORMAT")),
+                                   hr(),
+                                   span("Your aggregated data file can be accepted in any three of the following formats:"),
+                                   hr(),
+                                   tags$ul(
+                                     tags$li(("SAS (.sas7bdat)")),         
+                                     tags$li(("Excel (.xls, .xlsx)")),  
+                                     tags$li(("Tab delimited (.txt)")))
+                                   #,
+                                  
+                   ),  
+                 (column(6,
+                                   h6(p(style = "color:dodgerblue","VARIABLES")),
+                                   hr(),
+                                   # span("The file should have the following variables:"),
+                                   tags$ul(
+                                     tags$li(strong("ID:"),"Suggested — your two-character State (e.g. FL)."), 
+                                     tags$li(strong("Defect_Name:"), "A string that identifies your defect. There should be no spaces. ","(e.g. 'Trisomy_21' instead of 'Trisomy 21'). There is no limit to how many defects to include in the analysis."), 
+                                     tags$li(strong("Cases:"), "Case count for that time unit.**"),
+                                     tags$li(strong("Time:"), "Aggregate all data by year only (YYYY), or by month and year (YYYY/MM)."),
+                                     tags$li(strong("Population:"), "The number of live births (birth defect cases + all other infants born that year) in your whole registry area for each date combination."
+                                     ))
+                         )),
+                  
+                  column(3,
+                  
+                          ((em(style = "color:red","NOTES"))),
+                         hr(),
+                          # p(style = "color:dodgerblue","Notes:"),
+                          p("1. Your Excel file or text file must have a header row with the five variables (ID DEFECT_NAME CASES TIME POPULATION)."),
+                          # p(style = "color:dodgerblue","Note on Cases**:"),
+                         # hr(),
+                          p("2. Each defect must be within the same time frame. You cannot look at one defect from 2004-2006 and another from 2003-2006. To do this, create two different files.")
+                          
+                  ),
+                 column(12,
+                 
+                          h4(p(style = "color:dodgerblue","Step 2: Start analysis")),
+                          hr(),
+                          p( "Once the data is aggregated, go to the File Input page to start the analysis."),
+                          # br(),  br(),  br(),  br(),  br(),  br(),
+                          actionButton("filego", "Go to File Input page!")
+                          #,
+                          # br(),  br(),  br(),  br(),  br(),  br(),
+                          # br()
+                          
+                         ))
+                 #,
+ 
+                   )),
+          
+          column(4,
+               wellPanel(h5("Table 1: Example data for formatting"),
+                           includeHTML("www/tables.HTML"),
+                           hr(),
+                           em( "Your aggregate data should look like the Table 1 (above). The highlighted rows in blue are not required: they are
+                                visual representations of how each defect is included in a single file."),
+                 
+                         br(),
+                         br(),
+                         br()
+                         ))))
+      #,
+                  
+                     # 
+                     # fluidRow(
+                     #   column(12,
+                     #          wellPanel(
+                     #            h4(p(style = "color:dodgerblue","Step 2")),
+                     #            hr(),
+                     #            p( "Once the data is aggregated, go to the File Input page to start the analysis."),
+                     #            br(),  br(),  br(),  br(),  br(),  br(),
+                     #            actionButton("filego", "Go to File Input page!"),
+                     #            br(),  br(),  br(),  br(),  br(),  br(),
+                     #            br()
+                     #            
+                     #          ) ))
+      ),
     
     
     
