@@ -147,9 +147,9 @@ shinyUI(
                    wellPanel(
                      # h4(p("About"), align="right", style = "color:dodgerblue"),
                      # h5(("Today's Date")),
-                     dateInput("Today",
-                               label = "Today's Date", value =
-                                 NULL),
+                     # dateInput("Today",
+                     #           label = "Today's Date", value =
+                     #             NULL),
                      p(
                        h5("Contact for help:"),
                        span("skhan81.900", style = "color:black"),

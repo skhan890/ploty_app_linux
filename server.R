@@ -7,6 +7,11 @@ library(shiny)
 shinyServer(function(input, output, session) {
   v <- reactiveValues(doPlot = FALSE)
   
+  output$mytable <- renderTable({
+    tab <- matrix(rep(1,6),nrow=3)
+    colnames(tab) <- c('col1','col2')
+    tab
+  })
   
   
   cap <- eventReactive(input$goButton, {
@@ -303,9 +308,11 @@ shinyServer(function(input, output, session) {
       
       #satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="C:/Program Files (x86)/SaTScan")
       
-      thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="SaTScan", 
+      thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="SaTScan"
+                            #, 
                             #ssbatchfilename = "satscan_stdc++6_x86_64_64bit", 
-                            verbose=T )
+                           # verbose=T 
+                            )
       
       save(thefile, file=filepath)
       
