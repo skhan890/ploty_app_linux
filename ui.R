@@ -50,7 +50,7 @@ shinyUI(
                           
                   ),
                  column(12,
-                 
+                        hr(),
                           h4(p(style = "color:dodgerblue","Step 2: Start analysis")),
                           hr(),
                           p( "Once the data is aggregated, go to the File Input page to start the analysis."),
@@ -66,14 +66,15 @@ shinyUI(
                    )),
           
           column(4,
-               wellPanel(h5("Table 1: Example data for formatting"),
+               wellPanel(h5(p(style = "color:dodgerblue","Table 1: Example data for formatting")),    hr(),
                            includeHTML("www/tables.HTML"),
                            hr(),
                            em( "Your aggregate data should look like the Table 1 (above). The highlighted rows in blue are not required: they are
                                 visual representations of how each defect is included in a single file."),
                  
                          br(),
-                         br(),
+                         br(),br(),
+                    
                          br()
                          ))))
       #,
@@ -208,12 +209,14 @@ shinyUI(
                      "caption", container = span
                    )),
                    uiOutput("Choices"),
-                   
-               plotlyOutput("plots")
-               # ,
-               # 
-               # uiOutput("contents23")
-               
+          wellPanel(
+            h5(p("Graph"), align = "right", style = "color:dodgerblue"),
+               plotlyOutput("plots")),
+          wellPanel(
+            h5(p("Text output"), align = "right", style = "color:dodgerblue"),
+            verbatimTextOutput("contents23")
+            
+          )
              )
              ))),
     

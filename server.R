@@ -1,6 +1,4 @@
-## trying to add the options
 
-#setwd("C:/Users/Sars/Desktop/Winter break app/Tab layout changed, and adding plotly/")
 library(shiny)
 library(htmlTable)
 
@@ -11,8 +9,7 @@ shinyServer(function(input, output, session) {
 ###Drop down menu for the defects
   cap <- eventReactive(input$goButton, {
     "Select a defect:"
-    # br()
-    # hr()
+
 
   })
   
@@ -118,25 +115,7 @@ shinyServer(function(input, output, session) {
     )
   })
   
-  
-  # CREATION OF TABS
-  #     output$dynamicTabs <- renderUI({
-  #       tabs <- lapply(input$in6,function(x){
-  #         tabPanel(
-  #           title = paste0(x)
-  #           ,tags$iframe(src=('tmp2.html'),
-  #                        width = '100%',
-  #                        height = 600,
-  #                        frameborder = 0,
-  #                        marginheight = 0
-  #           )
-  #           ,value=x
-  #         )
-  #       })
-  #       do.call(tabsetPanel,c(tabs,id='selectedTab'))
-  #     })
-  #
-  
+
   # FILE CREATE
   
   observeEvent(input$goButton, {
@@ -472,93 +451,34 @@ shinyServer(function(input, output, session) {
            # plot_bgcolor="#E2E2E2"
           #,
           #,
-           width=800, height=500
-          ,legend=(list(bgcolor="#E2E2E2"))
+           # width=800, height=500
+          #,
+          legend=(list(bgcolor="#E2E2E2"))
           )
         p
 
 
   })
 
+
   
-  
-  
-  
-  
-  
-  # output$dynamicTabs <- renderUI({
-  #   if (is.null(Defects()))
-  #     return(NULL)
-  #
-  #   # plots<-plots()
-  #   # df<-plots()
-  # #  plotname<-df$plotname
-  #
-  #   load("www/defects")
-  #
-  #   codes<-unique(defects)
-  #
-  #   code_list<-setNames(as.list(codes), codes)
-  #
-  #
-  #
-  #   tabs <- lapply(code_list,function(x) {
-  #
-  #   plotname <- paste("plot", x, sep="")
-  #
-  #     tabPanel(
-  #       title = paste0(x),
-  #       # tags$iframe(src =
-  #    uiOutput(plots[plotname])
-  #     )
-  #   })
-  #   do.call(tabsetPanel,c(tabs,id = 'selectedTab'))
-  #
-  # })
-  
-  
-  output$inc <- renderUI({
-    if (is.null(Defects()))
-      return(NULL)
-    
-    x <- input$selected_defect
-    
-    src_name = paste0("www/Parameter_", x, ".temporal.html")
-    writeLines(iconv(readLines(src_name), from = "ISO-8859-15", to = "UTF8"),
-               paste0("www/", x, "ex2.html"))
-    src_new <- paste0("www/", x, "ex2.html")
-    
-    return(tags$iframe(
-      src = paste0(x, "ex2.html"),
-      width = '100%',
-      height = 800,
-      scrolling = "auto"
-    ))
-    
-  })
-  
-  
-  
-  
-  
-  
-  output$contents23 <- renderUI({
+  output$contents23 <- renderPrint({
+
     if (is.null(Defects()))
       return(NULL)
     load("www/thefile")
+    load("www/defects")
     
-    str1 <- thefile[[1]]$main[25]
-    str2 <- thefile[[1]]$main[26]
-    str3 <- thefile[[1]]$main[27]
-    str4 <- thefile[[1]]$main[28]
-    str5 <- thefile[[1]]$main[29]
-    str6 <- thefile[[1]]$main[30]
-    str7 <- thefile[[1]]$main[31]
-    str8 <- thefile[[1]]$main[32]
+    x<-input$selected_defect
+
+    numberOfDefects<-(unique(defects))
+ 
+    #This is to find the position to which the "Satscan (thefile)" list that the
+    # selected defect is in
+    numberInList<-match(x, numberOfDefects)
+
+ return(thefile[[numberInList]])
     
-    h6(HTML(
-      paste(str1, str2, str3, str4, str5, str6, str7, str8, sep = '<br/>')
-    ))
     
   })
   
