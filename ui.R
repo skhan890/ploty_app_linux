@@ -3,39 +3,57 @@ shinyUI(
     title = "NBDPN: Time Monitoring",
     id = "mainNavbarPage",
     theme = shinytheme("readable"),
-    
     tabPanel(
-      "Welcome!",
+      "Tutorial",
       fluidPage(
-        # splitLayout(
-       
-                 fluidRow(
-                   column(4,
+                 fluidRow(#class="myRow1",
+                   column(8,#div(style = "height:200px"),
                           wellPanel(
-                            h4(p(style = "color:dodgerblue","Step 1")),
-                            strong("Prepare data files"),hr(),
-                            
-                            
-                            p("Data should be structured as the table below:"),
+                            h4(p(style = "color:dodgerblue","Step 1: Prepare data files")),
+
                             hr(),
-                            img(src = 'Icons/graph.png', align = "center"),
-                            em(p(" Example of aggregate data of three defects."))
-                            
+                      # strong("Data should be structured as Table 1 (on the left)."),hr(),
+                   #   span("To prepare data, follow the next steps:"),
+                           h6(p(style = "color:dodgerblue","FORMAT")),
+                   hr(),
+                      span("Your aggregated data file can be accepted in any three of the following formats:"),
+                      tags$ul(
+                        tags$li(("SAS (.sas7bdat)")),         
+                        tags$li(("Excel (.xls, .xlsx)")),  
+                        tags$li(("Tab delimited (.txt)"))),  
+             hr() ,
+             h6(p(style = "color:dodgerblue","VARIABLES")),
+             hr(),
+             span("The file should have the following variables:"),
+             tags$ul(
+               tags$li(strong("ID:"),"Suggested — your two-character State (e.g. FL)."), 
+               tags$li(strong("Defect_Name:"), "A string that identifies your defect. There should be no spaces. ","(e.g. 'Trisomy_21' instead of 'Trisomy 21'). There is no limit to how many defects to include in the analysis."), 
+               tags$li(strong("Cases:"), "Case count for that time unit.**"),
+               tags$li(strong("Time:"), "Aggregate all data by year only (YYYY), or by month and year (YYYY/MM)."),
+               tags$li(strong("Population:"), "The number of live births (birth defect cases + all other infants born that year) in your whole registry area for each date combination."
+               )),
+                            br() ,
+                            br() ,
+                            br() ,
+                            br() 
+                            #,
+                           
+                            #,
+
                           ) ),
+                   column(4,#div(style = "height:200px"),
+                          wellPanel(h5("Table 1: Example data for formatting"),
+                       includeHTML("www/tables.HTML"),hr(),
+                         em( "Your aggregate data should look like the Table 1 (above). The highlighted rows in blue are not required: they are
+                          visual representations of how each defect is included in a single file.")))),
                    fluidRow(
-                     column(4,
+                     column(12,
                             wellPanel(
-                              h4(p(style = "color:dodgerblue","Step 2")),
-                              strong("Notes on aggregating data:"),hr(),
-                              p("Create a SAS (.sas7bdat), Excel (.xls, .xlsx) or tab delimited Text (.txt) of aggregate-data with the following variables:"),
+                              h4(p(style = "color:dodgerblue","Step 2: Notes on aggregating data:")),
+                              # strong(),
                               hr(),
-                              tags$ul(
-                                tags$li(strong("ID:"),"Suggested — your two-character State (e.g. FL)."), 
-                                tags$li(strong("Defect_Name:"), "A string that identifies your defect. There should be no spaces. ","(e.g. 'Trisomy_21' instead of 'Trisomy 21'). There is no limit to how many defects to include in the analysis."), 
-                                tags$li(strong("Cases:"), "Case count for that time unit.**"),
-                                tags$li(strong("Time:"), "Aggregate all data by year only (YYYY), or by month and year (YYYY/MM)."),
-                                tags$li(strong("Population:"), "The number of live births (birth defect cases + all other infants born that year) in your whole registry area for each date combination."
-                                )),
+                              hr(),
+                              
                               hr(),
                               p(style = "color:dodgerblue","Notes:"),
                               p("Your Excel file or text file must have a header row with the five variables (ID DEFECT_NAME CASES TIME POPULATION)."),
@@ -45,10 +63,10 @@ shinyUI(
                               ,
                               hr()
                             )
-                     ),
+                     )),
                      
                      fluidRow(
-                       column(4,
+                       column(4,offset=4,
                               wellPanel(
                                 h4(p(style = "color:dodgerblue","Step 3")),
                                 hr(),
@@ -58,7 +76,7 @@ shinyUI(
                                 br(),  br(),  br(),  br(),  br(),  br(),
                                 br()
                                 
-                              ) )))))),
+                              ) )))),
     
     
     
@@ -70,7 +88,7 @@ shinyUI(
                    width = 3,
                    tags$style(".well {background-color:gray92;}"),
                    wellPanel(
-                     h4(p("File Input"), align = "right", style = "color:dodgerblue"),
+                     h5(p("File Input"), align = "right", style = "color:dodgerblue"),
                      img(src = 'Icons/one.png', align = "center"),
                      br(),
                      br(),
@@ -108,7 +126,7 @@ shinyUI(
                    # ),
                    wellPanel(
                      #Title
-                     h4(p("Time Range"), align = "right", style = "color:dodgerblue"),
+                     h5(p("Time Range"), align = "right", style = "color:dodgerblue"),
                      #Widget
                      img(src = 'Icons/three.png', align = "center"),
                      br(),
@@ -143,20 +161,21 @@ shinyUI(
                      #,
                      # h6(p("After pressing the 'Start Analysis' button, you will have to press
                      #      'show all content' and may have to refresh the screen.", style = "color:red"))
-                     ),
-                   wellPanel(
-                     # h4(p("About"), align="right", style = "color:dodgerblue"),
-                     # h5(("Today's Date")),
-                     # dateInput("Today",
-                     #           label = "Today's Date", value =
-                     #             NULL),
-                     p(
-                       h5("Contact for help:"),
-                       span("skhan81.900", style = "color:black"),
-                       span("@", style = "color:dodgerblue"),
-                       span("gmail.com", style = "color:black")
                      )
-                   )
+                   # ,
+                   # wellPanel(
+                   #   # h4(p("About"), align="right", style = "color:dodgerblue"),
+                   #   # h5(("Today's Date")),
+                   #   # dateInput("Today",
+                   #   #           label = "Today's Date", value =
+                   #   #             NULL),
+                   #   p(
+                   #     h5("Contact for help:"),
+                   #     span("skhan81.900", style = "color:black"),
+                   #     span("@", style = "color:dodgerblue"),
+                   #     span("gmail.com", style = "color:black")
+                   #   )
+                   # )
                    )
                  ,
                  #            #,
@@ -204,18 +223,20 @@ shinyUI(
                                     tags$li("Purely temporal"),
                                     tags$li("Retrospective"),
                                     tags$li("High-rates only (Observed > Expected)"),
-                                    tags$li("Poisson distribution")),
-                                  br(),
-                                  br(),
-                                  br(),
-                                  hr()
+                                    tags$li("Poisson distribution"))
+                                  ,
+                                  br()
+                                  #,
+                                  # br(),
+                                  # br(),
+                                  # hr()
                                   #,
                                   # h5(p("Note: This app works best in Internet Explorer"),style="color:red")
                                   ))),
                column(12,
-                      wellPanel(align="left",
+                      wellPanel(
                                 # "About",
-                                h5("Licenses"),
+                                h4("Licenses"),
                                 tags$ul(
                                   
                                   
@@ -226,7 +247,7 @@ shinyUI(
                                     )
                                   ),
                                   tags$li(
-                                    "SaTScan: Kuldorff M and Information Management Services I. SaTScanTM v6.0: Software for the spatial and space-time scan statistics. 2005.",
+                                    "SaTScan: Kulldorff M and Information Management Services I. SaTScanTM v9.4.2: Software for the spatial and space-time scan statistics. 2015.",
                                     (tags$a(href = "www.satscan.org", "www.satscan.org"))
                                   ),
                                   tags$li(

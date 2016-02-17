@@ -2,24 +2,27 @@
 
 #setwd("C:/Users/Sars/Desktop/Winter break app/Tab layout changed, and adding plotly/")
 library(shiny)
+library(htmlTable)
 
 
 shinyServer(function(input, output, session) {
   v <- reactiveValues(doPlot = FALSE)
   
-  output$mytable <- renderTable({
-    tab <- matrix(rep(1,6),nrow=3)
-    colnames(tab) <- c('col1','col2')
-    tab
-  })
-  
-  
+###Drop down menu for the defects
   cap <- eventReactive(input$goButton, {
     "Select a defect:"
     # br()
     # hr()
-    
+
   })
+  
+  
+
+    observeEvent(input$do, {
+      
+    })
+
+  
   
   
   output$caption <- renderText({
