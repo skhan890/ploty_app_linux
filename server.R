@@ -290,14 +290,19 @@ shinyServer(function(input, output, session) {
       
       #satscan(outputDir, (paste("Parameter",code,sep="_")), sslocation="C:/Program Files (x86)/SaTScan")
       
-      thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")), 
-                            #sslocation="SaTScan"
-                           # ,
-                           ssbatchfilename = "satscan_stdc++6_x86_64_64bit"
-                           #, 
-                           # verbose=T 
-                            )
+      thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")),
+                            sslocation="SaTScan",
+                            ssbatchfilename = "satscan_stdc++6_x86_64_64bit", verbose=T )
       
+      # 
+      # thefile[[i]]<-satscan(outputDir, (paste("Parameter",code,sep="_")), 
+      #                       #sslocation="SaTScan"
+      #                      # ,
+      #                      ssbatchfilename = "satscan_stdc++6_x86_64_64bit"
+      #                      #, 
+      #                      # verbose=T 
+      #                       )
+      # 
       save(thefile, file=filepath)
       
     }

@@ -32,7 +32,7 @@ shinyUI(
                                    tags$ul(
                                      tags$li(strong("ID:"),"Suggested — your two-character State (e.g. FL)."), 
                                      tags$li(strong("Defect_Name:"), "A string that identifies your defect. There should be no spaces. ","(e.g. 'Trisomy_21' instead of 'Trisomy 21'). There is no limit to how many defects to include in the analysis."), 
-                                     tags$li(strong("Cases:"), "Case count for that time unit.**"),
+                                     tags$li(strong("Cases:"), "Case count for that time unit."),
                                      tags$li(strong("Time:"), "Aggregate all data by year only (YYYY), or by month and year (YYYY/MM)."),
                                      tags$li(strong("Population:"), "The number of live births (birth defect cases + all other infants born that year) in your whole registry area for each date combination."
                                      ))

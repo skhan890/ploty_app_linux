@@ -28,7 +28,7 @@ library(htmlTable)
 
 ##DATE FUNCTION##
 outputDir<-"www/"
-defects<-read.table("www/Icons/list_of_Defects.txt", header=T, sep=",")
+#defects<-read.table("www/Icons/list_of_Defects.txt", header=T, sep=",")
 
 mydateInput <- function(inputId, label, value = NULL, min = NULL, max = NULL,
                         format = "yyyy-mm-dd", startview = "month", weekstart = 0, language = "en", minviewmode="months",
